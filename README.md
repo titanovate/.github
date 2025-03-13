@@ -1,1 +1,1 @@
-# .github
+# [titanovate](titanovate.com)
