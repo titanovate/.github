@@ -9,3 +9,11 @@
 ## 📝 Description
 
 ---
+
+## 🔁 Steps to Reproduce
+
+---
+
+## 🚨 Severity / Impact
+
+---
