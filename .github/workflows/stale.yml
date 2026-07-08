@@ -1,0 +1,58 @@
+# To use this in any repo, add .github/workflows/stale.yml with:
+#
+# on:
+#   schedule:
+#     - cron: '0 0 * * *'
+# jobs:
+#   stale:
+#     uses: titanovate/.github/.github/workflows/stale.yml@main
+
+name: Stale Issues & PRs
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      days-before-stale:
+        description: Days of inactivity before marking as stale
+        required: false
+        type: number
+        default: 30
+      days-before-close:
+        description: Days after stale label before closing
+        required: false
+        type: number
+        default: 7
+
+jobs:
+  stale:
+    name: Mark & Close Stale Items
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/stale@v9
+        with:
+          days-before-stale: ${{ inputs.days-before-stale || 30 }}
+          days-before-close: ${{ inputs.days-before-close || 7 }}
+          stale-issue-label: stale
+          stale-pr-label: stale
+          exempt-issue-labels: pinned,security,in-progress
+          exempt-pr-labels: pinned,security,in-progress
+          stale-issue-message: >
+            This issue has been automatically marked as stale due to 30 days of inactivity.
+            It will be closed in 7 days unless there is new activity.
+            If this is still relevant, please leave a comment or remove the **stale** label.
+          stale-pr-message: >
+            This pull request has been automatically marked as stale due to 30 days of inactivity.
+            It will be closed in 7 days unless there is new activity.
+            If this is still being worked on, please leave a comment or remove the **stale** label.
+          close-issue-message: >
+            This issue has been automatically closed due to inactivity.
+            Feel free to reopen it if it becomes relevant again.
+          close-pr-message: >
+            This pull request has been automatically closed due to inactivity.
+            Feel free to reopen it if it becomes relevant again.
