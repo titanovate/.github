@@ -18,7 +18,7 @@
 
 ### 🧪 How Has This Been Tested?
 
-<!-- Please describe the tests that you ran to verify your change. -->
+<!-- Please describe the tests or steps that you ran to verify your change. -->
 
 Confirm unit/integration tests were added/updated -
 
